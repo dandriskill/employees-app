@@ -1,0 +1,11 @@
+{
+  "name": "employees-app",
+  "version": "1.0.0",
+  "description": "Employees app coding test for Clozd.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Daniel K. Driskill",
+  "license": "ISC"
+}
