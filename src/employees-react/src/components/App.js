@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 function App() {
   const [customers, setCustomers] = useState([]);
   const [page, setPage] = useState("1");
-  const [resultsPerPage, setResultsPerPage] = useState("20");
+  const [resultsPerPage, setResultsPerPage] = useState("10");
 
   useEffect(() => {
     axios.get(`http://localhost:3001/employees?page=${page}&results=${resultsPerPage}`)
@@ -19,7 +19,7 @@ function App() {
   return (
     <div>
       <h1>Employees</h1>
-      {JSON.stringify(customers)}
+      {customers.length ? JSON.stringify(customers) : <p>Loading...</p>}
     </div>
   );
 }
