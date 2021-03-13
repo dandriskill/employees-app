@@ -4,7 +4,7 @@ const axios = require("axios");
 
 // Get employees
 router.get("/employees", async (req, res) => {
-    let results = req.query.results || "20";
+    const results = req.query.results || "20";
     const page = req.query.page || "1";
     try {
         // Grabbing users from randomuser.me with needed data properties
