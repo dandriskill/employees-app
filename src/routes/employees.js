@@ -6,7 +6,6 @@ const axios = require("axios");
 router.get("/employees", async (req, res) => {
     let results = req.query.results || "20";
     const page = req.query.page || "1";
-    // TODO: Search/filter functionality
     try {
         // Grabbing users from randomuser.me
         const { data } = await axios.get(`https://randomuser.me/api/?page=${page}&results=${results}&seed=abc`);
