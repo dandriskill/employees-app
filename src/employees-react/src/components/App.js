@@ -3,16 +3,16 @@ import { useState, useEffect } from "react";
 import Employees from "./Employees";
 import ResultsSelect from "./ResultsSelect";
 import Pagination from "./Pagination";
+import StandardModal from "./StandardModal";
 
 import "../styles/App.css";
 
 function App() {
   const [employees, setEmployees] = useState([]);
+  const [currentEmployee, setCurrentEmployee] = useState(null);
   const [page, setPage] = useState("1");
   const [results, setResults] = useState("10");
   const [modalIsOpen, setModalIsOpen] = useState(false);
-
-  // TODO: Add modal and it's ability to show details, passing in the employee object identified from the array by email when clicked
 
   useEffect(() => {
     axios.get(`http://localhost:3001/employees?page=${page}&results=${results}`)
@@ -25,9 +25,19 @@ function App() {
   }, [page, results]);
 
   const handleSetResults = (newResults) => {
-    // React batches these state updates into one (yay! I love React!)
+    // React batches these state updates into one! (I love React!)
     setResults(newResults);
     setPage("1");
+  };
+
+  const handleSelectEmployee = (employee) => {
+    setCurrentEmployee(employee);
+    setModalIsOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setModalIsOpen(false);
+    setCurrentEmployee(null);
   };
 
   return (
@@ -39,8 +49,16 @@ function App() {
           <p>Email</p>
           <p>Location</p>
       </div>
-      {employees.length ? <Employees employees={employees} /> : <p>Loading...</p>}
+      {employees.length ?
+        <Employees employees={employees} selectEmployee={handleSelectEmployee} /> :
+        <p>Loading...</p>
+      }
       <Pagination page={page} setPage={setPage} />
+      <StandardModal
+        modalIsOpen={modalIsOpen}
+        closeModal={handleCloseModal}
+        currentEmployee={currentEmployee}
+      />
     </div>
   );
 }

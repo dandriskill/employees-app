@@ -1,0 +1,22 @@
+.modal {
+    display: block;
+    margin: 5% auto 0;
+    padding: 20px;
+    width: 250px;
+    background-color: white;
+    border: 1px solid black;
+    outline: none;
+    text-align: center;
+}
+
+.modal p {
+    margin: 0;
+}
+
+.modal .employee-contact {
+    margin-top: 10px;
+}
+
+.modal .employee-address {
+    margin: 10px 0px 15px 0px;
+}

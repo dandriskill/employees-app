@@ -1,13 +1,17 @@
 import "../styles/Employees.css";
 
-function Employees({ employees }) {
+function Employees({ employees, selectEmployee }) {
     return (
         <div className="employees">
-            {employees.map(({ name, email, location }) => (
-                <div className="employee" key={email}>
-                    <p>{`${name.first} ${name.last}`}</p>
-                    <p>{email}</p>
-                    <p>{`${location.city}, ${location.country}`}</p>
+            {employees.map((employee) => (
+                <div
+                    className="employee"
+                    key={employee.email}
+                    onClick={() => selectEmployee(employee)}
+                >
+                    <p>{`${employee.name.first} ${employee.name.last}`}</p>
+                    <p>{employee.email}</p>
+                    <p>{`${employee.location.city}, ${employee.location.country}`}</p>
                 </div>
             ))}
         </div>
